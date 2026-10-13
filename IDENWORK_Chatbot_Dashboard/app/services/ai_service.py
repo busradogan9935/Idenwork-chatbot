@@ -19,7 +19,7 @@ class AIService:
         try:
             r = requests.post('https://api.groq.com/openai/v1/chat/completions',
                 headers={'Authorization':f'Bearer {api_key}','Content-Type':'application/json'},
-                json={'model':'llama-3.1-8b-instant','messages':messages,'temperature':0.65,'max_tokens':450}, timeout=25)
+                json={'model':'openai/gpt-oss-120b','messages':messages,'temperature':0.65,'max_tokens':450}, timeout=25)
             r.raise_for_status()
             return r.json()['choices'][0]['message']['content']
         except (requests.RequestException, KeyError, IndexError, TypeError, ValueError) as exc:
